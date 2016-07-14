@@ -9,6 +9,7 @@ var auth = require('./routes/auth');
 var routes = require('./routes/index');
 var tickets = require('./routes/tickets');
 var users = require('./routes/users');
+var user_bouncer = require('./lib/user_bouncer')
 
 var app = express();
 
@@ -21,14 +22,13 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser('asdfjasasdfads'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', auth);
 app.use('/', routes);
 app.use('/users', users);
 app.use('/tickets', tickets);
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
